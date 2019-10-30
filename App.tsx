@@ -1,12 +1,22 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, {useState} from 'react';
+import { StyleSheet, View } from 'react-native';
+import AppLoader from './components/appLoader/AppLoader'
+import AppMenu from './components/appMenu/AppMenu'
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-    </View>
-  );
+    const [loading, setLoadingStatus] = useState(true)
+
+    setTimeout(() => setLoadingStatus(false) , 3000)
+
+    return (
+        <View style={styles.container}>
+        {
+            loading 
+            ? <AppLoader appName="Todo app"/> 
+            : <AppMenu />
+        } 
+        </View>
+    );
 }
 
 const styles = StyleSheet.create({
